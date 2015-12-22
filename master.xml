@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite>
+	<id>S8543</id>
+	<name>Master</name>
+	<description></description>
+	<sections>
+		<section>
+		<name>Export test</name>
+		<description>test for exporting xml</description>
+						
+		<cases>
+									
+						<case>
+				<id>C886568</id>
+				<title>case 1</title>
+												<type>Automated</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<preconds>test</preconds>
+										<steps_separated><step>
+<index>1</index><content>test</content><expected>test</expected></step>
+</steps_separated>
+									</custom>
+							</case>
+												
+						<case>
+				<id>C886569</id>
+				<title>case 2</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+															</case>
+												
+						<case>
+				<id>C886570</id>
+				<title>case 3</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+															</case>
+												
+						<case>
+				<id>C886571</id>
+				<title>case 4</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+															</case>
+												
+						<case>
+				<id>C886572</id>
+				<title>case 5</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+															</case>
+												
+						<case>
+				<id>C886573</id>
+				<title>case 6</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+															</case>
+								</cases>
+							</section>
+	</sections>
+</suite>
