@@ -5,76 +5,861 @@
 	<description></description>
 	<sections>
 		<section>
-		<name>Export test</name>
-		<description>test for exporting xml</description>
+		<name>Cart Icon</name>
+		<description>This section of test is designed to test the display of the shopping cart icon.</description>
 						
 		<cases>
 									
-						<case>
-				<id>C886568</id>
-				<title>case 1</title>
-												<type>Automated</type>
+																										<case>
+				<id>C886705</id>
+				<title>CART - Icon display unsupported site</title>
+												<type>Functionality</type>
 																<priority>P2 - Medium</priority>
 												
 				<estimate></estimate>
 																																<references></references> 
 																<custom>
-										<preconds>test</preconds>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>User has a clean install of the eBay application.
+Application has been launched to the US site.</preconds>
 										<steps_separated><step>
-<index>1</index><content>test</content><expected>test</expected></step>
+<index>1</index><content>User changes the eBay site, in &apos;Settings&apos;, to a site which does not support the shopping cart.</content><expected>User is returned to the home screen.</expected></step>
 </steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+</ebaysites>
 									</custom>
 							</case>
 												
 						<case>
-				<id>C886569</id>
-				<title>case 2</title>
+				<id>C886706</id>
+				<title>CART - Icon display supported site</title>
 												<type>Functionality</type>
 																<priority>P2 - Medium</priority>
 												
 				<estimate></estimate>
 																																<references></references> 
-															</case>
+																<custom>
+										<preconds>Users eBay site is set to an unsupported site.</preconds>
+										<steps_separated><step>
+<index>1</index><content>User changes the eBay site, in &apos;Settings&apos;, to a site which does supports the shopping cart.</content><expected>User is returned to the home screen.</expected></step>
+</steps_separated>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Cart - Auction</name>
+		<description>This section of Shopping Cart tests is designed to test item state/business logic specific to &apos;Auction&apos; item types.</description>
+						
+		<cases>
+									
+																										<case>
+				<id>C886707</id>
+				<title>CART - Auction in Cart - no Bid</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer adds an auction BIN item to cart, with no bids
+Buyer has not PAID for the Auction Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886708</id>
+				<title>CART - Auction in Cart - with Bid, no reserve</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Seller lists an Auction item with Buy It Now enabled.
+The listing site and the buying site are the same
+Buyer is signed in
+Buyer has no other items in the Shopping Cart
+Buyer A adds an auction BIN item to cart
+Buyer B places a bid on the auction item, from another device or website
+</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>After Buyer B places a bid on the auction item, Buyer A refreshes their shopping cart</content><expected>Shopping cart page updates item status.</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886709</id>
+				<title>CART - Auction in Cart - with Bid, does not meet reserve</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Seller lists an Auction item with a minimum reserve price &amp; Buy It Now enabled.
+The listing site and the buying site are the same
+Buyer is signed in
+Buyer has no other items in the Shopping Cart
+Buyer A adds an auction BIN item to cart
+Buyer B places a bid on the auction item, less than the minimum reserve price, from another device or website
+</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>After Buyer B places a bid on the auction item, Buyer A refreshes their shopping cart.</content><expected>Shopping cart page updates item status.</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886710</id>
+				<title>CART - High Bidder BIN/Auction</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer has added Item A to Cart
+Buyer has subsequently bid on auction Item A (bid &gt; Buy it Now price)
+Buyer has not won the Auction Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886711</id>
+				<title>CART - High Bidder BIN/Auction in SFL</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer has added Item A to Cart
+Buyer has subsequently bid on auction Item A (bid &gt; BIN price)
+Buyer has not won the Auction Item A
+Buyer has no other items in the Shopping Cart
+Buyer enters Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer taps Save for Later (SFL) on Item A</content><expected>Cart is empty as Item A has moved to SFL</expected></step>
+<step>
+<index>2</index><content>Buyer taps Saved tab</content><expected>Item A should be present in Saved for Later</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886712</id>
+				<title>CART - High Bidder BIN/Auction in SFL Move to Cart</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer has added Item A to Cart
+Buyer has subsequently bid on auction Item A (bid &gt; BIN price)
+Buyer has not won the Auction Item A
+Buyer has no other items in the Shopping Cart
+Buyer enters Cart
+Buyer taps Saved tab</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer taps Move to Cart on Item A</content><expected>Error message seen [NEED ERROR TEXT]-  item not moved to Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886713</id>
+				<title>CART - Won Auction</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer have won an auction for Item A
+Buyer has not PAID for the Auction Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Cart - Fixed Price</name>
+		<description>This section of Shopping Cart tests is designed to item state/business logic specific to &apos;Fixed Price&apos; item types.</description>
+										<sections>
+		<section>
+		<name>Single Item</name>
+		<description></description>
+						
+		<cases>
+									
+																										<case>
+				<id>C886714</id>
+				<title>CART - Single Qty Fixed Price/BIN (Immediate Pay)</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Item A (a single qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886715</id>
+				<title>CART - Best Offer - Seller Accepted Offer - Single Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Seller has accepted the Best Offer from the buyer for Item A
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886716</id>
+				<title>CART - Best Offer - Buyer Accepts Seller Counteroffer - Single Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer has accepted a counteroffer from the seller for Item A
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886717</id>
+				<title>CART - Best Offer - Seller Accepts Buyer Counteroffer - Single Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Seller has accepted a counteroffer from the buyer for Item A
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Multi Item</name>
+		<description></description>
+						
+		<cases>
+									
+																										<case>
+				<id>C886718</id>
+				<title>CART - Multiple Qty Fixed Price/BIN (Immediate Pay)</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added an Immediate Pay Item A (a multiple qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886719</id>
+				<title>CART - Multiple Qty Fixed Price/BIN - Add to Cart</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added an multi BIN item to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886720</id>
+				<title>CART - Multiple Qty Fixed Price/BIN - Buy It Now</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Seller lists a multi quantity fixed price item, with PayPal immediate pay disabled
+Buyer is signed in
+Buyer has committed to buy the item, with a quantity value &gt; 1</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886721</id>
+				<title>CART - Multiple Qty BIN Change Qty (Immediate Pay)</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Immediate Pay Item A (a multiple qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>Change the Qty of the item</content><expected>Qty should change</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886722</id>
+				<title>CART - Best Offer - Accepted Offer - Multi Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Seller has accepted a Best Offer from the buyer for Item A w/ qty &gt; 1
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886723</id>
+				<title>CART - Best Offer - Buyer Accepts Seller Counteroffer - Multi Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Buyer has accepted a counteroffer from the seller for Item A w/ qty &gt; 1
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886724</id>
+				<title>CART - Best Offer - Seller Accepts Buyer Counteroffer - Multi Item</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>The listing site and the buying site are the same
+Buyer is signed in
+Seller has accepted a counteroffer from the buyer for Item A w/ qty &gt; 1
+Buyer has not PAID for the Item A
+Buyer has no other items in the Shopping Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Multi SKU</name>
+		<description></description>
+						
+		<cases>
+									
+																										<case>
+				<id>C886725</id>
+				<title>CART - Multiple SKU BIN (Immediate Pay)</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Immediate Pay Item A (a multiple SKU BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886726</id>
+				<title>CART - Multiple SKU BIN - Add to Cart</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added a multi SKU item to cart.</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886727</id>
+				<title>CART - Multiple SKU BIN - Buy It Now</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Seller lists a multi SKU fixed price item, with PayPal immediate pay disabled
+Buyer is signed in
+Buyer has committed to buy a multi SKU item</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+								</cases>
+							</section>
+	</sections>
+			</section>
+			<section>
+		<name>Cart - Invoiced Items</name>
+		<description>This section of Shopping Cart tests is designed to test item state/business logic specific to invoiced items.</description>
+									</section>
+			<section>
+		<name>Cart Actions</name>
+		<description>This section of Shopping Cart tests is designed to test the user interface &amp; functionality.</description>
+						
+		<cases>
+									
+																										<case>
+				<id>C886728</id>
+				<title>CART - Not signed in</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<preconds>Buyer is signed in adds Item A (a single qty BIN) to Cart
+Buyer signs out</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Sign in screen is displayed </expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886729</id>
+				<title>CART - Not signed in - &lt;Add to Cart&gt; button</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<preconds>Buyer is signed out of the application
+Buyer searches &amp; finds a &apos;Buy It Now&apos; item
+Buyer views item</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects &lt;Add to Cart/Basket&gt; button in View Item</content><expected>Sign in screen is displayed </expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886730</id>
+				<title>CART - View item - &lt;View in Cart&gt; button</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<preconds>Buyer is signed into the application,
+Buyer has an existing item in their shopping cart,
+Buyer has View Item displayed for an item residing in their shopping cart.</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer in &apos;View Item&apos; selects the &lt;View in Cart&gt; button</content><expected>The buyer&apos;s shopping cart page is displayed.</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886731</id>
+				<title>CART - Single Qty Fixed Price/BIN SFL</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Item A (a single qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>Buyer taps Save for Later</content><expected>Item is no longer seen in 
+</expected></step>
+<step>
+<index>3</index><content>Buyer taps Saved Tab</content><expected>Item A mentioned above should be present in Saved</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886732</id>
+				<title>CART - Single Qty Fixed Price/BIN Remove</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Item A (a single qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>Buyer taps Remove</content><expected>Item A is no longer seen in in Cart
+</expected></step>
+<step>
+<index>3</index><content>Buyer taps Saved Tab</content><expected>Item is not seen in Saved</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
+												
+																										<case>
+				<id>C886733</id>
+				<title>CART - Single Qty Fixed Price/BIN Move to Cart</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>Buyer is signed in
+Buyer has added Item A (a single qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>Buyer selects Shopping Cart</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+<step>
+<index>2</index><content>Buyer taps Save for Later</content><expected>Item A is no longer seen in In Cart
+</expected></step>
+<step>
+<index>3</index><content>Buyer taps Saved Tab</content><expected>Item A mentioned above should be present in Saved</expected></step>
+<step>
+<index>4</index><content>Buyer taps Move to Cart</content><expected>Item A is no longer seen in Saved</expected></step>
+<step>
+<index>5</index><content>Buyer taps In Cart tab</content><expected>Item A mentioned above should be present in Shopping Cart</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>3</id><value>US</value></item>
+<item>
+<id>4</id><value>UK</value></item>
+<item>
+<id>6</id><value>AU</value></item>
+</ebaysites>
+									</custom>
+							</case>
 												
 						<case>
-				<id>C886570</id>
-				<title>case 3</title>
+				<id>C886734</id>
+				<title>CART - Tap on an item in cart</title>
 												<type>Functionality</type>
 																<priority>P2 - Medium</priority>
 												
 				<estimate></estimate>
 																																<references></references> 
-															</case>
-												
-						<case>
-				<id>C886571</id>
-				<title>case 4</title>
-												<type>Functionality</type>
-																<priority>P2 - Medium</priority>
-												
-				<estimate></estimate>
-																																<references></references> 
-															</case>
-												
-						<case>
-				<id>C886572</id>
-				<title>case 5</title>
-												<type>Functionality</type>
-																<priority>P2 - Medium</priority>
-												
-				<estimate></estimate>
-																																<references></references> 
-															</case>
-												
-						<case>
-				<id>C886573</id>
-				<title>case 6</title>
-												<type>Functionality</type>
-																<priority>P2 - Medium</priority>
-												
-				<estimate></estimate>
-																																<references></references> 
-															</case>
+																<custom>
+										<preconds>Buyer is signed in
+Buyer has added Item A (a single qty BIN) to Cart</preconds>
+										<steps_separated><step>
+<index>1</index><content>In buyer&apos;s shopping cart, the buyer selects (i.e. taps on) an item.</content><expected>The application loads the View Item page.</expected></step>
+</steps_separated>
+									</custom>
+							</case>
 								</cases>
 							</section>
 	</sections>
