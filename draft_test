@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite>
+	<id>S8558</id>
+	<name>draft test</name>
+	<description>draft test</description>
+	<sections>
+		<section>
+		<name>draft test</name>
+		<description>draft test</description>
+						
+		<cases>
+									
+																										<case>
+				<id>C888054</id>
+				<title>draft test</title>
+												<type>Functionality</type>
+																<priority>P2 - Medium</priority>
+												
+				<estimate></estimate>
+																																<references></references> 
+																<custom>
+										<domain><id>5</id><value> Payments</value></domain>
+										<preconds>test data</preconds>
+										<steps_separated><step>
+<index>1</index><content>test data</content><expected>test data</expected></step>
+<step>
+<index>2</index><content>test data</content><expected>test data</expected></step>
+<step>
+<index>3</index><content>test data</content><expected>test data</expected></step>
+</steps_separated>
+										<ebaysites><item>
+<id>2</id><value>Europe</value></item>
+</ebaysites>
+									</custom>
+							</case>
+								</cases>
+							</section>
+	</sections>
+</suite>
